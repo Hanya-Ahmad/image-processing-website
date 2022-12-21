@@ -1,0 +1,19 @@
+The amplitude and phase represent the distribution of energy in the frequency plane.
+The low frequencies are located in the center of the image, and the high frequencies near the boundaries.
+In the figure above, the gray background behind the squirrel is a low frequency area because the intensities of the pixels slowly evolve from one pixel to another.
+On the contrary, the tail is a high frequency area because the pixel intensity shows a rapid alternation between the hair and the background.
+<<<<< link web site >>>  <<<<https://vincmazet.github.io/bip/filtering/fourier.html>>>>>
+
+<<<<<< important link >>>>> <<<< why make fourier transform for images <<<<  https://homepages.inf.ed.ac.uk/rbf/HIPR2/fourier.htm>>>
+
+
+size of image in spatial domain is equal in frequency domain
+fourier transform for image is consider the same fourier for sound but the different is in image it in 2d but in sound it in 1d.
+we have some simple images in gray scale which has its fourier transform (بتكون محفوظه) if we have complicated image (i.e. image of tree in gray scale)to make fourier transform for it .
+it consist of huge signal from simple one , this mean that images is considered more sin signals add to gether to make image but in two direction (in two different frequency as (Asin(kx+hy)) k in x direction, h in y direction)
+<<<<<<<< link web site>>>>>>   <<<<<https://plus.maths.org/content/fourier-transforms-images>>>>>>
+
+
+<<<<< important link for fourier transform as code in python >>>>>>> <<<<<<https://towardsdatascience.com/image-processing-with-python-application-of-fourier-transformation-5a8584dc175b>>>
+<<<<<<    important link for fourier transform as code in python >>>>>>>  <<<<< https://docs.opencv.org/3.4/de/dbc/tutorial_py_fourier_transform.html>>>>>
+
