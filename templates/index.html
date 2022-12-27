@@ -13,27 +13,38 @@
     <div class="container">
         <h1>Merging Photo</h1>
         </div>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file1">
+            <input type="file" name="file2">
+            <input type="submit">
+            </form>
 
         <div class="photo-gallery">
             <div class="contain-phase">
                 <h2>Phase image</h2>
                 <div class="pic phase">
-                    <img src="../static/images/phase image 2.jpg" />
+                    
+                    <img src="{{ url_for('static',filename='images/'+path_to_first_pic+'') }}" />
+                  
                 </div>
     
                 <div class="pic phase determin">
-                    <img scr="Screenshot (18).png">
+                    <img src="Screenshot (18).png">
                 </div>
             </div>
             
             <div class="contain-magnitude">
                 <h2>Magnitude Image</h2>
                 <div class="pic magnitude">
-                    <img src="../static/images/magnitude image.jpg" />
+                    <!-- <form method="post" enctype="multipart/form-data">
+                        <input type="file" name="file2">
+                        <input type="submit">
+                        </form> -->
+                        <img src="{{ url_for('static',filename='images/'+path_to_second_pic+'') }}" />
                 </div>
     
                 <div class="pic magnitude determin">
-                    <img scr="Screenshot (20).png">
+                    <img src="Screenshot (20).png">
                 </div>
 
             </div>
@@ -43,7 +54,7 @@
                 <h2>Result Photo</h2>
 
                 <div class="pic result">
-                    <img scr="Screenshot (21).png">
+                    <img src="Screenshot (21).png">
                 </div>
 
             </div>   
