@@ -1,5 +1,7 @@
-from flask import Flask, render_template,request
+from flask import Flask, render_template,request, json
 import os
+import cv2
+import json
 app = Flask(__name__)
 UPLOAD_FOLDER = "./static/images"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
@@ -8,6 +10,7 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 def index():
     if request.method == 'POST':
         if 'file2' in request.files and 'file1' in request.files:
+            # print(request.headers) 
             file1 = request.files['file1']
             first_path = os.path.join(app.config['UPLOAD_FOLDER'], file1.filename)
             file1.save(first_path)

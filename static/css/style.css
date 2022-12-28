@@ -78,6 +78,12 @@ h2{
     border-radius: 10px;
     transition: .5s;
 }
+.contain-phase{
+max-width: 100%;
+}
+.contain-phase img{
+    width:100%;
+}
 
 .pic:hover::after{
     height: 100%;
@@ -96,4 +102,17 @@ h2{
 
 .result{
     top: 26%;
+}
+
+#id_confirm{
+    color: green;
+}
+#id_confirm:hover {
+    opacity: 0.3;
+}
+#id_cancel:hover {
+    opacity: 0.3;
+}
+#id_cancel{
+    color: red;
 }
