@@ -11,7 +11,6 @@ def index():
     if request.method == 'POST':
         print(request.get_data())
         if 'file2' in request.files and 'file1' in request.files:
-            # print(request.headers) 
             file1 = request.files['file1']
             first_path = os.path.join(app.config['UPLOAD_FOLDER'], file1.filename)
             file1.save(first_path)
@@ -27,5 +26,4 @@ def index():
     else:
         return render_template('index.html', path_to_first_pic="messi.jpg", path_to_second_pic="My project.jpg")
 if __name__ == '__main__':        
-
     app.run(debug=True)
