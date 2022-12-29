@@ -1,122 +1,86 @@
-// let cropper;
-// let imageFile;
-// let base64ImageString;
-// let cropX;
-// let cropY;
-// let cropWidth;
-// let cropHeight;
-// let imageField;
 
-// enableImageOverlay();
+let phaseImageCropX;
+let phaseImageCropY;
+let phaseImageCropWidth;
+let phaseImageCropHeight;
+let magnitudeImageCropX;
+let magnitudeImageCropY;
+let magnitudeImageCropWidth;
+let magnitudeImageCropHeight;
 
-// imageField = document.getElementById("phase_img");
-
-
-// function enableImageOverlay(){
-//     cropper = new Cropper(imageField,{
-//         crop(event){
-//             console.log("CROP START");
-//             console.log("x:" + event.detail.x);
-//             console.log("y:" + event.detail.y);
-//             console.log("width:" + event.detail.width);
-//             console.log("height:" + event.detail.height);
-//             setImageCropProperties(image,
-//                 event.detail.x,
-//                 event.detail.y,
-//                 event.detail.width,
-//                 event.detail.height);
-//         }
-//     })
-// 		let cropConfirm = document.getElementById("id_image_crop_confirm")
-// 		cropConfirm.classList.remove("d-flex")
-// 		cropConfirm.classList.remove("flex-row")
-// 		cropConfirm.classList.remove("justify-content-between")
-// 		cropConfirm.classList.add("d-none")
-
-//         let confirm = document.getElementById("id_confirm")
-
-// 			cropImage(
-// 				imageFile, 
-// 				cropX, 
-// 				cropY, 
-// 				cropWidth,
-// 				cropHeight
-// 			)
-// 		}
-
-
-// function isImageSizeValid(image){
-
-//     // console.log(image)
-//     let startIndex = image.indexOf("base64,") + 7;
-//     let base64str = image.substr(startIndex);
-//     let decoded = atob(base64str);
-//     console.log("FileSize: " + decoded.length);
-//     return base64str
-// }
-
-// function cropImage(image, x, y, width, height){
-//     base64ImageString = isImageSizeValid(image);
-//     if(base64ImageString != null){
-//         var requestData = {
-//             "csrfmiddlewaretoken": "{{ csrf_token }}",
-//             "image": base64ImageString,
-//             "cropX": cropX,
-//             "cropY": cropY,
-//             "cropWidth": cropWidth,
-//             "cropHeight": cropHeight
-//         }
-//         console.log('testtttttttt')
-//         fetch('http://127.0.0.1:5000/', {
-//           method: 'POST',
-//           headers: {"Content-Type": "application/json"},
-//           dataType:'json',
-//           data: requestData 
-
-//       }).then(response => response.json()
-//       ).then(json => {
-//           console.log(json)
-//       });
-// }
-// }
-
-// function setImageCropProperties(image, x, y, width, height){
-//  imageFile = image;
-//  cropX = x;
-//  cropY = y;
-//  cropWidth = width;
-//  cropHeight = height;
- 
-// }
-let cropX;
-let cropY;
-let cropWidth;
-let cropHeight;
-const image = document.getElementById('phase_img');
-const cropper = new Cropper(image, {
+const phaseImage = document.getElementById('phase_img');
+const magnitudeImage = document.getElementById('magnitude_img')
+const phaseCropper = new Cropper(phaseImage, {
     aspectRatio:0,
     viewMode:3,
      crop(event){
-                    // console.log("CROP START");
-                    // console.log("x:" + event.detail.x);
-                    // console.log("y:" + event.detail.y);
-                    // console.log("width:" + event.detail.width);
-                    // console.log("height:" + event.detail.height);
-        cropX = event.detail.x;
-        cropY = event.detail.y;
-        cropWidth = event.detail.width;
-        cropHeight = event.detail.height;  
+        phaseImageCropX = event.detail.x;
+        phaseImageCropY = event.detail.y;
+        phaseImageCropWidth = event.detail.width;
+        phaseImageCropHeight = event.detail.height;  
 }});
-const cropBtn = document.getElementById('cropPhaseImgBtn');
-cropBtn.addEventListener('click',
+const magnitudeCropper = new Cropper(magnitudeImage, {
+    aspectRatio:0,
+    viewMode:3,
+     crop(event){
+        magnitudeImageCropX = event.detail.x;
+        magnitudeImageCropY = event.detail.y;
+        magnitudeImageCropWidth = event.detail.width;
+        magnitudeImageCropHeight = event.detail.height;  
+}});
+
+const cropPhaseImgBtn = document.getElementById('cropPhaseImgBtn');
+const cropMagnitudeImgBtn = document.getElementById('cropMagnitudeImgBtn')
+
+
+cropPhaseImgBtn.addEventListener('click',
 function(){
-let croppedImage = cropper.getCroppedCanvas().toDataURL("image/png");
-document.getElementById('output').src = croppedImage;
-console.log("x:" + cropX);
-console.log("y:" + cropY);
-console.log("width:" + cropWidth);
-console.log("height:" + cropHeight);
+let croppedPhaseImage = phaseCropper.getCroppedCanvas().toDataURL("image/png");
+document.getElementById('phase_output').src = croppedPhaseImage;
+// console.log("x:" + phaseImageCropX);
+// console.log("y:" + phaseImageCropY);
+// console.log("width:" + phaseImageCropWidth);
+// console.log("height:" + phaseImageCropHeight);
+
+//top left point, bottom left point, top right point, bottom right point
+let phaseCropArray=[[phaseImageCropX , phaseImageCropY],
+[phaseImageCropX , phaseImageCropY+phaseImageCropHeight],
+[phaseImageCropX+phaseImageCropWidth , phaseImageCropY],
+[phaseImageCropX+phaseImageCropWidth , phaseImageCropY+phaseImageCropHeight]
+]
+
+let formData=new FormData()
+formData.append('data', phaseCropArray);
+console.log(phaseCropArray)
+fetch('/', {
+          method: 'POST',
+          body: JSON.stringify({'formData':formData}),
+          contentType: "application/json",
+          dataType: 'json'
+      }).then(function (response) {
+        responseClone = response.clone(); // 2
+        return response.json();
+    }).then(function (data) {
+        // Do something with data
+    }, function (rejectionReason) { // 3
+        console.log('Error parsing JSON from response:', rejectionReason, responseClone); // 4
+        responseClone.text() // 5
+        .then(function (bodyText) {
+            console.log('Received the following instead of valid JSON:', bodyText); // 6
+        });
+
+});
 
 
+})
 
+
+cropMagnitudeImgBtn.addEventListener('click',
+function(){
+let croppedMagnitudeImage = magnitudeCropper.getCroppedCanvas().toDataURL("image/png");
+document.getElementById('magnitude_output').src = croppedMagnitudeImage;
+console.log("x:" + magnitudeImageCropX);
+console.log("y:" + magnitudeImageCropY);
+console.log("width:" + magnitudeImageCropWidth);
+console.log("height:" + magnitudeImageCropHeight);
 });

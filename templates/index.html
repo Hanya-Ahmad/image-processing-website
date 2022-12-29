@@ -8,10 +8,13 @@
     <link rel = "shortcut icon" href = "../static/images/275127.png" type = "x-icon">
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" type="text/css"  href= "{{ url_for('static',filename='cropperjs/dist/cropper.min.css') }}"/>
-    <link rel="stylesheet" href="../static/cropperjs/dist/cropper.min.css">
+    <!-- <link rel="stylesheet" href="../static/cropperjs/dist/cropper.min.css"> -->
 
 </head>
 <body>
+    <!-- {% if flag %}
+    <h1> {{ phase_crop_array }}</h1>
+    {% endif %} -->
     <div class="container">
         <h1>Merging Photo</h1>
         </div>
@@ -36,22 +39,19 @@
                 </div>
     
                 <div class="pic phase determin">
-                    <img src="Screenshot (18).png">
+                    <img id="phase_output" src="">
                 </div>
             </div>
             
             <div class="contain-magnitude">
                 <h2>Magnitude Image</h2>
                 <div class="pic magnitude">
-                    <!-- <form method="post" enctype="multipart/form-data">
-                        <input type="file" name="file2">
-                        <input type="submit">
-                        </form> -->
-                        <img src="{{ url_for('static',filename='images/'+path_to_second_pic+'') }}" />
-                </div>
+                        <img id="magnitude_img" src="{{ url_for('static',filename='images/'+path_to_second_pic+'') }}" />
+                        <button id="cropMagnitudeImgBtn"> Crop Magnitude Image </button>
+                    </div>
     
                 <div class="pic magnitude determin">
-                    <img src="Screenshot (20).png">
+                    <img id="magnitude_output" src="">
                 </div>
 
             </div>
@@ -69,7 +69,6 @@
         </div>
     </div>
 
-<script src="../node_modules/cropperjs/dist/cropper.min.js"> </script>
 <script src="../static/cropperjs/dist/cropper.min.js"> </script>
 
 
