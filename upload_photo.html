@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/21dba1864f.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="contain">
+        <label>
+            <span >Mag</span>
+            <input type="checkbox" id="for_img_1" name="btn"  checked >
+            <span  >Phase</span>
+        </label>
+        
+        <label>
+            <span >Mag</span>
+            <input type="checkbox" id="for_img_2" name="btn" >
+            <span  >Phase</span>
+        </label>
+    </div>
+    <div class="boxes">
+        <div class="container">
+            <div class="wrapper">
+               <div class="image">
+                  <img >
+               </div>
+               <div class="content">
+                  <div class="icon">
+                     <i class="fas fa-cloud-upload-alt"></i>
+                  </div>
+                  <div class="text">
+                     No file chosen, yet!
+                  </div>
+                  
+               </div>
+               <div id="cancel-btn">
+                  <i class="fas fa-times"></i>
+               </div>
+            </div>
+            <button onclick="defaultBtnActive()" id="custom-btn">Choose a file</button>
+            <input id="default-btn" type="file" hidden >
+        </div>
+    
+        <div class="container">
+            <div class="wrapper" id="second_wrapper">
+               <div class="image">
+                  <img id="second_image">
+               </div>
+               <div class="content">
+                  <div class="icon">
+                     <i class="fas fa-cloud-upload-alt"></i>
+                  </div>
+                  <div class="text">
+                     No file chosen, yet!
+                  </div>
+                  
+               </div>
+               <div class="second_cancel" id="cancel-btn">
+                  <i class="fas fa-times"></i>
+               </div>
+            </div>
+            <button onclick="defaultBtnSecondActive()" class="custom_btn_second" id="custom-btn">Choose a file</button>
+            <input class="default_btn_class" id="default-btn" type="file" hidden>
+        </div>
+
+       
+        
+
+
+
+    </div>
+
+    <div class="container" id="result">
+        <div class="wrapper" id="result_wrapper">
+            <div class="image">
+               <img >
+            </div>
+        </div>
+     
+    </div>
+
+    
+
+
+    <script  type="text/javascript" src="java_script_file.js"></script>
+</body>
+</html>
