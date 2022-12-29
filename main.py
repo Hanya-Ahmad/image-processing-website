@@ -1,6 +1,6 @@
 from flask import Flask, render_template,request, json
 import os
-import functions as fn
+# import functions as fn
 app = Flask(__name__)
 UPLOAD_FOLDER = "./static/images"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
@@ -18,8 +18,8 @@ def index():
             file2 = request.files['file2']
             second_path = os.path.join(app.config['UPLOAD_FOLDER'], file2.filename)
             file2.save(second_path)
-            phase_image,magnitude_image = fn.set_images(first_path,second_path)
-            phase_image_resized , magnitude_image_resized = fn.resizing_image(phase_image,magnitude_image)
+            # phase_image,magnitude_image = fn.set_images(first_path,second_path)
+            # phase_image_resized , magnitude_image_resized = fn.resizing_image(phase_image,magnitude_image)
             return render_template('index.html',path_to_first_pic=file1.filename, path_to_second_pic=file2.filename)
             
         else:
