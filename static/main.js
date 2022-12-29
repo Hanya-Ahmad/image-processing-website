@@ -37,10 +37,7 @@ cropPhaseImgBtn.addEventListener('click',
 function(){
 let croppedPhaseImage = phaseCropper.getCroppedCanvas().toDataURL("image/png");
 document.getElementById('phase_output').src = croppedPhaseImage;
-// console.log("x:" + phaseImageCropX);
-// console.log("y:" + phaseImageCropY);
-// console.log("width:" + phaseImageCropWidth);
-// console.log("height:" + phaseImageCropHeight);
+
 
 //top left point, bottom left point, top right point, bottom right point
 let phaseCropArray=[[phaseImageCropX , phaseImageCropY],
@@ -79,8 +76,5 @@ cropMagnitudeImgBtn.addEventListener('click',
 function(){
 let croppedMagnitudeImage = magnitudeCropper.getCroppedCanvas().toDataURL("image/png");
 document.getElementById('magnitude_output').src = croppedMagnitudeImage;
-console.log("x:" + magnitudeImageCropX);
-console.log("y:" + magnitudeImageCropY);
-console.log("width:" + magnitudeImageCropWidth);
-console.log("height:" + magnitudeImageCropHeight);
+
 });

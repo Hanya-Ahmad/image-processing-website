@@ -8,7 +8,6 @@
     <link rel = "shortcut icon" href = "../static/images/275127.png" type = "x-icon">
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" type="text/css"  href= "{{ url_for('static',filename='cropperjs/dist/cropper.min.css') }}"/>
-    <!-- <link rel="stylesheet" href="../static/cropperjs/dist/cropper.min.css"> -->
 
 </head>
 <body>
@@ -32,7 +31,6 @@
                 <div class="pic phase">
                     
                   <img id="phase_img" src="{{ url_for('static',filename='images/'+path_to_first_pic+'') }}" />
-                  <!-- <img id="image1" src="../static/images/messi.jpg"> -->
                   <button id="cropPhaseImgBtn"> Crop Phase Image </button>
 
 
@@ -73,7 +71,6 @@
 
 
 <script src="{{ url_for('static',filename='main.js') }}"> </script>
-<!-- <script src="../static/main.js"> </script> -->
 
 </body>
 </html>
