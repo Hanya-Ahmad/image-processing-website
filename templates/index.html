@@ -7,65 +7,72 @@
     <title>Merge Photo</title>
     <link rel = "shortcut icon" href = "../static/images/275127.png" type = "x-icon">
     <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="stylesheet" type="text/css"  href= "{{ url_for('static',filename='cropperjs/dist/cropper.min.css') }}"/>
+    <link rel="stylesheet" type="text/css"  href= "../static/cropperjs/dist/cropper.min.css">
+    <script src="https://kit.fontawesome.com/21dba1864f.js" crossorigin="anonymous"></script>
 
 </head>
 <body>
-    <!-- {% if flag %}
-    <h1> {{ phase_crop_array }}</h1>
-    {% endif %} -->
-    <div class="container">
-        <h1>Merging Photo</h1>
-        </div>
-        <form method="post" enctype="multipart/form-data">
-            <input type="file" name="file1">
-            <input type="file" name="file2">
-            <input type="submit">
-
-            </form>
-
-        <div class="photo-gallery">
-    
-            <div class="contain-phase">
-                <h2>Phase image</h2>
-                <div class="pic phase">
-                    
-                  <img id="phase_img" src="{{ url_for('static',filename='images/'+path_to_first_pic+'') }}" />
-                  <button id="cropPhaseImgBtn"> Crop Phase Image </button>
-
-
-                </div>
-    
-                <div class="pic phase determin">
-                    <img id="phase_output" src="">
-                </div>
-            </div>
+    <div class="contain">
+        
+        <label>
+            <span >Mag</span>
+            <input type="checkbox" id="for_img_1" name="btn"  checked >
+            <span  >Phase</span>
+        </label>
+        
+        <label>
+            <span >Mag</span>
+            <input type="checkbox" id="for_img_2" name="btn" >
+            <span  >Phase</span>
+        </label>
+    </div>
+    <div class="boxes">
+        <div class="container">
             
-            <div class="contain-magnitude">
-                <h2>Magnitude Image</h2>
-                <div class="pic magnitude">
-                        <img id="magnitude_img" src="{{ url_for('static',filename='images/'+path_to_second_pic+'') }}" />
-                        <button id="cropMagnitudeImgBtn"> Crop Magnitude Image </button>
-                    </div>
-    
-                <div class="pic magnitude determin">
-                    <img id="magnitude_output" src="">
-                </div>
+            <div class="wrapper">
+               <div class="image">
+                
+                  <img id="first_image" src="{{ path_to_first_pic  }}" />
+               </div>
 
             </div>
+            <form method="post" enctype="multipart/form-data">
+                <!-- <input type="file" name="file1"> -->
+                <label for="custom-btn" id="custom-label" class="btn">Choose a file</label> 
+                <input type="file" style="visibility:hidden;" onchange="this.form.submit()" name="file1" class="custom_btn_second" id="custom-btn">
+                
+                </form>
+            <button id="cropPhaseImgBtn"> Crop First Image </button>
 
-            <div class="contain-result">
-
-                <h2>Result Photo</h2>
-
-                <div class="pic result">
-                    <img src="" id="output">
-                </div>
-
-            </div>   
-           
+        </div>
+        <div class="container">
+            <div class="wrapper" id="second_wrapper">
+               <div class="image">
+               
+                  <img id="second_image" src="{{ path_to_second_pic  }}" />
+               </div>  
+            </div>
+            <form method="post" enctype="multipart/form-data">
+                <!-- <input type="file" name="file1"> -->
+                <label for="custom-btn" id="custom-label">Choose a file</label> 
+                <input style="visibility:hidden;"  type="file" onchange="this.form.submit()" class="custom_btn_second" id="custom-btn" name="file2">
+                
+                </form>
+            <button id="cropMagnitudeImgBtn" class="custom-btn-crop"> Crop Second Image </button> 
         </div>
     </div>
+    
+    <div class="container" id="result">
+        <div class="wrapper" id="result_wrapper">
+            <div class="image">
+               <img id="output" >
+               
+               
+            </div>
+        </div>
+     
+    </div>
+
 
 <script src="../static/cropperjs/dist/cropper.min.js"> </script>
 
@@ -74,4 +81,6 @@
 
 </body>
 </html>
+ 
+
 

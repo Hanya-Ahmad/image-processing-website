@@ -1,4 +1,4 @@
-*{
+/* *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -58,7 +58,6 @@ label:hover{
     height: 250px;
     width:400px;
     border-radius: 10px;
-    margin-top: 25px;
     box-shadow: 3px 3px 5px lightgray;
     cursor: pointer;
     transition: .5s;
@@ -115,4 +114,222 @@ max-width: 100%;
 }
 #id_cancel{
     color: red;
+} */
+
+
+
+/* NEW CSS */
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
+html,body{
+    
+    position: relative;
+    max-height: 100vh;
+    background: #111;
+    
+    
+    
+}
+.boxes{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    row-gap: 10px;
+    position: relative;
+    top:50px;
+    width:100%;
+
+
+}
+.container{
+    height: 240px;
+    width: 343px;
+  position: relative;
+  margin: auto;
+}
+
+#result{
+    top:130px;
+}
+
+.container .wrapper{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  background: rgb(28, 27, 27);
+  border: 2px dashed #3e3e3e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.wrapper.active{
+  border: none;
+}
+.wrapper .image{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.wrapper .icon{
+  font-size: 100px;
+  color:aqua;
+}
+.wrapper .text{
+  font-size: 20px;
+  font-weight: 500;
+  color: #5B5B7B;
+}
+.wrapper #cancel-btn i{
+  position: absolute;
+  font-size: 20px;
+  right: 15px;
+  top: 15px;
+  color: aqua;
+  cursor: pointer;
+  display: none;
+}
+.wrapper.active:hover #cancel-btn i{
+  display: block;
+}
+.wrapper #cancel-btn i:hover{
+  color: #e74c3c;
+}
+.wrapper .file-name{
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  padding: 8px 0;
+  font-size: 18px;
+  color: #fff;
+  display: none;
+  background: linear-gradient(135deg,#3a8ffe 0%,aqua 100%);
+}
+.wrapper.active:hover .file-name{
+  display: block;
+}
+#custom-label{
+    margin-top: 30px;
+    vertical-align: middle;
+    line-height: 50px;
+}
+.container #custom-btn, #custom-label{
+  /* margin-left: 10px;   */
+  display: inline-block;
+  width: 100%;
+  height: 50px;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: text-bottom;
+  background: linear-gradient(135deg,#3a8ffe 0%,aqua 100%);
+}
+
+body{
+    min-height: 100vh;
+    background: #111;
+}
+
+.contain{
+    display: flex;
+    position: relative;
+    max-height: 100vh;
+    background: #111;
+    flex-direction: row;
+    justify-content: space-around;
+    row-gap: 10px;
+    top:50px;
+
+}
+
+input[type="checkbox"]{
+    position:relative;
+    width: 120px;
+    height: 40px;
+    margin: 10px;
+    outline: none;
+    background: aqua;
+    -webkit-appearance: none ;
+    cursor: pointer;
+    border-radius: 20px;
+    box-shadow: -5px -5px 20px rgba(255,255,255,0.1),
+                5px 5px 10px rgba(0, 0, 0, 1),
+                inset -2px -2px 5px rgba(255,255,255,0.1),
+                inset 2px 2px 5px rgba(0, 0, 0, 1) ,
+                0 0 0 2px #1f1f1f;
+    transform: 0.5s;
+
+}
+
+input[type="checkbox"]:checked{
+    background : aqua;
+}
+
+input[type="checkbox"]::before{
+    content:'';
+    position: absolute;
+    top:0;
+    left:0;
+    height: 40px;
+    width: 80px;
+    background: linear-gradient(to top,#000,#555);
+    border-radius: 20px;
+    box-shadow: 0 0 0 1px #232323;
+    transform: scale(0.98,0.96);
+    transition: 0.5s;
+}
+
+input[type="checkbox"]:checked::before{
+    left: 43px;
+}
+
+
+input[type="checkbox"]::after{
+    content: '';
+    position: absolute;
+    left: 65px;
+    top: calc(50% - 2px);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #555;
+    transition: 0.5s;
+}
+
+input[type="checkbox"]:checked::after{
+    left:calc(65px + 40px);
+    background: #63cdff;
+
+}
+
+span{
+    color: white;
+    position: relative;
+    bottom: 25px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+
