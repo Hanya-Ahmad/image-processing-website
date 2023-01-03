@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" type="text/css"  href= "../static/cropperjs/dist/cropper.min.css">
     <script src="https://kit.fontawesome.com/21dba1864f.js" crossorigin="anonymous"></script>
-
 </head>
 <body>
     <div class="contain">
@@ -34,15 +33,24 @@
                 
                   <img id="first_image" src="{{ path_to_first_pic  }}" />
                </div>
+               <div class="content">
+                <div class="icon">
+                   <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <div class="text">
+                   No file chosen, yet!
+                </div>
+                
+             </div>
 
             </div>
-            <form method="post" enctype="multipart/form-data">
+            <form action="http://127.0.0.1:5000/post" method="post" enctype="multipart/form-data">
                 <!-- <input type="file" name="file1"> -->
-                <label for="custom-btn" id="custom-label" class="btn">Choose a file</label> 
-                <input type="file" style="visibility:hidden;" onchange="this.form.submit()" name="file1" class="custom_btn_second" id="custom-btn">
+                <label for="testid" id="custom-label" class="btn">Choose a file</label> 
+                <input type="file" style="visibility:hidden;" onchange="this.form.submit()" name="file1" class="custom_btn_second" id="testid">
                 
                 </form>
-            <button id="cropPhaseImgBtn"> Crop First Image </button>
+            <!-- <button id="cropPhaseImgBtn"> Crop First Image </button> -->
 
         </div>
         <div class="container">
@@ -50,23 +58,31 @@
                <div class="image">
                
                   <img id="second_image" src="{{ path_to_second_pic  }}" />
-               </div>  
+               </div>
+               <div class="content">
+                <div class="icon">
+                   <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <div class="text">
+                   No file chosen, yet!
+                </div>
+                
+             </div>  
             </div>
-            <form method="post" enctype="multipart/form-data">
+            <form action="http://127.0.0.1:5000/post" method="post" enctype="multipart/form-data">
                 <!-- <input type="file" name="file1"> -->
                 <label for="custom-btn" id="custom-label">Choose a file</label> 
                 <input style="visibility:hidden;"  type="file" onchange="this.form.submit()" class="custom_btn_second" id="custom-btn" name="file2">
                 
                 </form>
-            <button id="cropMagnitudeImgBtn" class="custom-btn-crop"> Crop Second Image </button> 
+            <!-- <button id="cropMagnitudeImgBtn" class="custom-btn-crop"> Crop Second Image </button>  -->
         </div>
     </div>
     
     <div class="container" id="result">
         <div class="wrapper" id="result_wrapper">
             <div class="image">
-               <img id="output" >
-               
+               <img id="output" src="{{ output_image }}">
                
             </div>
         </div>
