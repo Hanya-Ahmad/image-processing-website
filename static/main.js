@@ -7,14 +7,69 @@ let secondImageCropX;
 let secondImageCropY;
 let secondImageCropWidth;
 let secondImageCropHeight;
-
-let checkbox1 = document.getElementById("for_img_1");
-let checkbox2 = document.getElementById("for_img_2");
-let hpCheckbox = document.getElementById("for_output");
+const checkbox1 = document.getElementById("for_img_1");
+const checkbox2 = document.getElementById("for_img_2");
+const hpCheckbox = document.getElementById("for_output");
+const firstImage = document.getElementById('phase_image');
+const secondImage = document.getElementById('magnitude_image');
+const output = document.getElementById('output');
 let first_image_is_phase;
 let hp_checked = 0;
+var firstCropper = firstCrop();
+var secondCropper = secondCrop();
+
+
+function firstCrop(){
+let firstCropper = new Cropper(firstImage, {
+    url:firstImage.src,
+    aspectRatio:0,
+    zoomOnWheel: false,
+    viewMode:3,
+    guides: false,
+    movable:false,
+    center:false,
+     crop(event){
+        firstImageCropX = parseInt(event.detail.x);
+        firstImageCropY = parseInt(event.detail.y);
+        firstImageCropWidth = parseInt(event.detail.width);
+        firstImageCropHeight = parseInt(event.detail.height);  
+       
+}, cropend(event){
+sendData();
+
+
+}});
+return firstCropper;
+}
+
+
+function secondCrop(){
+    let secondCropper = new Cropper(secondImage, {
+        url:secondImage.src,
+        aspectRatio:0,
+        zoomOnWheel: false,
+        viewMode:3,
+        guides: false,
+        movable:false,
+        center:false,
+         crop(event){
+            secondImageCropX = parseInt(event.detail.x);
+            secondImageCropY = parseInt(event.detail.y);
+            secondImageCropWidth = parseInt(event.detail.width);
+            secondImageCropHeight = parseInt(event.detail.height);  
+           
+    }, cropend(event){
+    sendData();
+    // updateData();
+
+    }});
+    return secondCropper;
+    }
+
+
 // Add a change event listener to each checkbox
 checkbox1.addEventListener("change", function() {
+    const random1 = new Date();
     if (checkbox1.checked) {
         checkbox2.checked = false;
         first_image_is_phase = 1;
@@ -29,39 +84,35 @@ checkbox1.addEventListener("change", function() {
         headers:{
           'Content-Type': 'application/json',
         'Accept': 'json, html'
-    }}).then(response => response.json()
-    ).then(json => {
-        console.log(json)
-    }).then(setTimeout(()=>{window.location.reload();}, 1*1000));
+    }}).then(() =>{
+        updateData();
+      }
+    )
+    // .then(setTimeout(()=>{window.location.reload();}, 1.5*1000));
+    window.localStorage.setItem('first_image_is_phase', first_image_is_phase);
 });
+
 hpCheckbox.addEventListener("change", function(){
+    const random = new Date();
     if (hpCheckbox.checked){
         hp_checked=1;
+    }
+    else{
+        hp_checked=0;
     }
     fetch('http://127.0.0.1:5000/post', {
     method: 'POST',
     body: JSON.stringify({hpBool:hp_checked}),
     headers:{
-      'Content-Type': 'application/json',
+    'Content-Type': 'application/json',
     'Accept': 'json, html'
-}}).then(response => response.json()
-).then(json => {
-    console.log(json)
-}).then(setTimeout(()=>{window.location.reload();}, 1*1000));
-
+}}).then(() =>{
+    updateData();
+  }
+)
+window.localStorage.setItem('hp_checked', hp_checked);
 });
 
-// fetch('http://127.0.0.1:5000/post', {
-//     method: 'POST',
-//     body: JSON.stringify({first_image_is_phase:first_image_is_phase}),
-//     headers:{
-//       'Content-Type': 'application/json',
-//     'Accept': 'json'
-// }}).then(function (response) {
-//   // responseClone = response.clone(); // 2
-
-//   return response.json();
-// }).then(function(){console.log(first_image_is_phase)})
 
 checkbox2.addEventListener("change", function() {
     if (checkbox2.checked) {
@@ -78,48 +129,13 @@ checkbox2.addEventListener("change", function() {
         headers:{
           'Content-Type': 'application/json',
         'Accept': 'json'
-    }}).then(response => response.json()
-    ).then(json => {
-        console.log(json)
-    }).then(setTimeout(()=>{window.location.reload();}, 1*1000));
-
+    }}).then(() =>{
+        updateData();
+      }
+    )
+    // .then(setTimeout(()=>{window.location.reload();}, 1.5*1000));
+    window.localStorage.setItem('first_image_is_phase', first_image_is_phase);
 });
-
-const firstImage = document.getElementById('phase_image');
-const secondImage = document.getElementById('magnitude_image')
-const firstCropper = new Cropper(firstImage, {
-    aspectRatio:0,
-    zoomOnWheel: false,
-    viewMode:3,
-    guides: false,
-    movable:false,
-     crop(event){
-        firstImageCropX = parseInt(event.detail.x);
-        firstImageCropY = parseInt(event.detail.y);
-        firstImageCropWidth = parseInt(event.detail.width);
-        firstImageCropHeight = parseInt(event.detail.height);  
-       
-}, cropend(event){
-    console.log("first cropper ended")
-
-sendData()
-}});
-const secondCropper = new Cropper(secondImage, {
-    aspectRatio:0,
-    zoomOnWheel: false,
-    viewMode:3,
-    guides: false,
-    movable:false,
-     crop(event){
-        secondImageCropX = parseInt(event.detail.x);
-        secondImageCropY = parseInt(event.detail.y);
-        secondImageCropWidth = parseInt(event.detail.width);
-        secondImageCropHeight = parseInt(event.detail.height);  
-       
-}, cropend(event){
-    console.log("second cropper ended")
-    sendData()
-}});
 
 
 function sendData(){
@@ -140,70 +156,52 @@ fetch('http://127.0.0.1:5000/post', {
     headers:{
       'Content-Type': 'application/json',
     'Accept': 'json, html'
-}}).then(response => response.json()
-).then(json => {
-    console.log(json)
-}).then(setTimeout(()=>{window.location.reload();}, 1*1000));
+
+    }}).then(()=>{
+        output.src="static/images/imag_final.jpg?"+ new Date().getMilliseconds();
+    });
 }
-const cropPhaseImgBtn = document.getElementById('cropPhaseImgBtn');
-const cropMagnitudeImgBtn = document.getElementById('cropMagnitudeImgBtn')
 
-// console.log("heree")
-// cropPhaseImgBtn.addEventListener('click',
-// function(){
-//     console.log(" FIRSTTT CLICKEDDD")
-// // let croppedFirstImage = firstCropper.getCroppedCanvas().toDataURL("image/png");
-// // document.getElementById('first_output').src = croppedFirstImage;
+function updateData(){
+    
 
 
-// //top left point, bottom left point, top right point, bottom right point
-// let firstCropArray=[[(firstImageCropX)*3/16 , (firstImageCropY)*3/16 ],
-// [(firstImageCropX) *3/16 , (firstImageCropY+firstImageCropHeight)*3/16 ],
-// [(firstImageCropX+firstImageCropWidth)*3/16  , (firstImageCropY)*3/16 ],
-// [(firstImageCropX+firstImageCropWidth)*3/16  , (firstImageCropY+firstImageCropHeight)*3/16 ]
-// ]
+    if (first_image_is_phase ==1 ){
+        firstCropper.destroy();
+        secondCropper.destroy();
+        firstImage.src="static/images/_phase.jpg?"+new Date().getMilliseconds();
+        secondImage.src="static/images/_mag.jpg?"+new Date().getMilliseconds();
+   
+        firstCropper = firstCrop();
+        secondCropper = secondCrop();
+    }
+    else{
+        output.src="static/images/imag_final.jpg?"+ new Date().getMilliseconds();
+        firstCropper.destroy();
+        secondCropper.destroy();
+        firstImage.src="static/images/_mag.jpg?"+new Date().getMilliseconds();
+        secondImage.src="static/images/_phase.jpg?"+new Date().getMilliseconds();
+        firstCropper = firstCrop();
+        secondCropper = secondCrop();
+        output.src="static/images/imag_final.jpg?"+ new Date().getMilliseconds();
 
-// console.log(firstCropArray)
-// fetch('/', {
-//           method: 'POST',
-//           body: JSON.stringify({firstData:firstCropArray}),
-//           headers:{
-//             'Content-Type': 'application/json',
-//           'Accept': 'json'
-//       }}).then(function (response) {
-//         // responseClone = response.clone(); // 2
-//         return response.json();
-//     })
-
-// });
-
-
-
-
-// cropMagnitudeImgBtn.addEventListener('click',
-// function(){
-//     console.log("SECOND CLICKEDDD")
-// // let croppedSecondImage = secondCropper.getCroppedCanvas().toDataURL("image/png");
-// // document.getElementById('second_output').src = croppedSecondImage;
+    }
+}
 
 
-
-// //top left point, bottom left point, top right point, bottom right point
-// let secondCropArray=[[secondImageCropX , secondImageCropY],
-// [secondImageCropX , secondImageCropY+secondImageCropHeight],
-// [secondImageCropX+secondImageCropWidth , secondImageCropY],
-// [secondImageCropX+secondImageCropWidth , secondImageCropY+secondImageCropHeight]
-// ]
-
-// fetch('/', {
-//     method: 'POST',
-//     body: JSON.stringify({secondData:secondCropArray}),
-//     headers:{
-//       'Content-Type': 'application/json',
-//     'Accept': 'json'
-// }}).then(function (response) {
-
-//   return response.json();
-// })
-
-// });
+window.addEventListener('load', function() {
+    if (parseInt(window.localStorage.getItem('first_image_is_phase')) == 1){
+    checkbox1.checked = true;
+    checkbox2.checked = false;
+    }
+    else{
+        checkbox1.checked = false;
+        checkbox2.checked = true;
+    }
+    if (parseInt(window.localStorage.getItem('hp_checked')) == 1){
+        hpCheckbox.checked = true;
+    }
+    else{
+        hpCheckbox.checked = false;
+    }
+  });

@@ -14,21 +14,21 @@
     <div class="contain">
         
         <label>
-            <span class="mag_1">Mag</span>
-            <input class="mag_1" type="checkbox" id="for_img_1" name="btn"  checked >
-            <span  class="mag_1">Phase</span>
+            <span class="mag_1" id = "span-1">Mag</span>
+            <input class="save-cb-state" type="checkbox" id="for_img_1" name="mycheckbox"  checked >
+            <span  class="mag_1" id = "span-2">Phase</span>
         </label>
 
         <label>
             <span >LP</span>
-            <input type="checkbox" id="for_output" name="btn"  checked >
+            <input type="checkbox" class="save-cb-state" id="for_output" name="mycheckbox2"  checked >
             <span  >HP</span>
         </label>
         
         <label>
-            <span class="mag_2">Mag</span>
-            <input class="mag_2"type="checkbox" id="for_img_2" name="btn" >
-            <span class="mag_2" >Phase</span>
+            <span class="mag_2" id = "span-3">Mag</span>
+            <input class="save-cb-state" type="checkbox" id="for_img_2" name="mycheckbox3" >
+            <span class="mag_2"id = "span-4" >Phase</span>
         </label>
     </div>
     <div class="boxes">
@@ -90,6 +90,7 @@
         <div class="containers" id="result_img1">
             <div class="wrapper" id="result_wrapper_img1">
                 <div class="image">
+                    
                    <img id="phase_image" src="{{ phase_image }}">
                    
                 </div>
@@ -123,7 +124,7 @@
 
 <script src="../static/cropperjs/dist/cropper.min.js"> </script>
 
-
+<script src="http://code.jquery.com/jquery.js"></script>
 <script src="{{ url_for('static',filename='main.js') }}"> </script>
 
 </body>

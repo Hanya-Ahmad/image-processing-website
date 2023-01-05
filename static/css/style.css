@@ -319,11 +319,11 @@ body{
 
 }
 
-.mag_2{
+#span-3, #span-4, #for_img_2{
     right: 115px
 
 }
-.mag_1{
+#for_img_1, #span-1, #span-2{
     left: 115px
 }
 
