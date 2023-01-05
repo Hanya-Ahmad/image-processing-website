@@ -9,21 +9,26 @@
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" type="text/css"  href= "../static/cropperjs/dist/cropper.min.css">
     <script src="https://kit.fontawesome.com/21dba1864f.js" crossorigin="anonymous"></script>
-
 </head>
 <body>
     <div class="contain">
         
         <label>
-            <span >Mag</span>
-            <input type="checkbox" id="for_img_1" name="btn"  checked >
-            <span  >Phase</span>
+            <span class="mag_1">Mag</span>
+            <input class="mag_1" type="checkbox" id="for_img_1" name="btn"  checked >
+            <span  class="mag_1">Phase</span>
+        </label>
+
+        <label>
+            <span >LP</span>
+            <input type="checkbox" id="for_output" name="btn"  checked >
+            <span  >HP</span>
         </label>
         
         <label>
-            <span >Mag</span>
-            <input type="checkbox" id="for_img_2" name="btn" >
-            <span  >Phase</span>
+            <span class="mag_2">Mag</span>
+            <input class="mag_2"type="checkbox" id="for_img_2" name="btn" >
+            <span class="mag_2" >Phase</span>
         </label>
     </div>
     <div class="boxes">
@@ -34,15 +39,25 @@
                 
                   <img id="first_image" src="{{ path_to_first_pic  }}" />
                </div>
+               <div class="content">
+                <div class="icon">
+                   <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <div class="text">
+                   No file chosen, yet!
+                </div>
+                
+             </div>
 
             </div>
-            <form method="post" enctype="multipart/form-data">
+            <form action="http://127.0.0.1:5000/post" method="post" name="form1" id="form1" enctype="multipart/form-data">
                 <!-- <input type="file" name="file1"> -->
-                <label for="custom-btn" id="custom-label" class="btn">Choose a file</label> 
-                <input type="file" style="visibility:hidden;" onchange="this.form.submit()" name="file1" class="custom_btn_second" id="custom-btn">
+                <label for="testid" id="custom-label" class="btn">Choose a file</label> 
                 
+                <input type="file" style="visibility:hidden;"  onchange="this.form.submit();" name="file1" class="custom_btn_second" id="testid">
+              
                 </form>
-            <button id="cropPhaseImgBtn"> Crop First Image </button>
+            <!-- <button id="cropPhaseImgBtn"> Crop First Image </button> -->
 
         </div>
         <div class="container">
@@ -50,29 +65,61 @@
                <div class="image">
                
                   <img id="second_image" src="{{ path_to_second_pic  }}" />
-               </div>  
+               </div>
+               <div class="content">
+                <div class="icon">
+                   <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <div class="text">
+                   No file chosen, yet!
+                </div>
+                
+             </div>  
             </div>
-            <form method="post" enctype="multipart/form-data">
+            <form action="http://127.0.0.1:5000/post" name="form2" id="form2" method="post" enctype="multipart/form-data">
                 <!-- <input type="file" name="file1"> -->
                 <label for="custom-btn" id="custom-label">Choose a file</label> 
-                <input style="visibility:hidden;"  type="file" onchange="this.form.submit()" class="custom_btn_second" id="custom-btn" name="file2">
+                <input style="visibility:hidden;"  type="file" onchange="this.form.submit();" class="custom_btn_second" id="custom-btn" name="file2">
                 
                 </form>
-            <button id="cropMagnitudeImgBtn" class="custom-btn-crop"> Crop Second Image </button> 
+            <!-- <button id="cropMagnitudeImgBtn" class="custom-btn-crop"> Crop Second Image </button>  -->
         </div>
     </div>
+    <div class="all_of_new_container">
     
-    <div class="container" id="result">
+        <div class="containers" id="result_img1">
+            <div class="wrapper" id="result_wrapper_img1">
+                <div class="image">
+                   <img id="phase_image" src="{{ phase_image }}">
+                   
+                </div>
+            </div>
+         
+        </div>
+    
+        <div class="containers" id="result_img2">
+            <div class="wrapper" id="result_wrapper_img2">
+                <div class="image">
+                   <img id="magnitude_image" src="{{ magnitude_image }}">
+                   
+                </div>
+            </div>
+         
+        </div>
+    
+
+    </div>
+
+    <div class="containers output" id="result">
         <div class="wrapper" id="result_wrapper">
             <div class="image">
-               <img id="output" >
-               
+               <img id="output" src="{{ output_image }}">
                
             </div>
         </div>
      
     </div>
-
+   
 
 <script src="../static/cropperjs/dist/cropper.min.js"> </script>
 

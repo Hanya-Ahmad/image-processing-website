@@ -47,7 +47,7 @@ import matplotlib.pyplot as plt
 # plot2(iz)
 
 
-images = preprocessingImages("static\images\WhatsApp Image 2023-01-03 at 14.11.15.jpg", "static\images\WhatsApp Image 2023-01-03 at 14.11.15.jpg")
+images = preprocessingImages("static\images\messi.jpg", "static\images\messi.jpg")
 images.resizedImage()
 image1 , image2 = images.get_resized_image()
 plt.figure(figsize=(15,30))

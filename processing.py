@@ -51,7 +51,7 @@ class Processing:
             value = 1
             path , signal_Edit= Processing.__get_magnitude(self)
 
-        if self.high_pass_bool :
+        if self.high_pass_bool: 
             for x in range (0, signal_Edit.shape[0]):
                 for y in range ( 0,signal_Edit.shape[1]):
                     if (x>=self.cropping_dimentions[0][0] and x<=self.cropping_dimentions[1][0]) and(y >=self.cropping_dimentions[0][1] and y <=self.cropping_dimentions[1][1]):
