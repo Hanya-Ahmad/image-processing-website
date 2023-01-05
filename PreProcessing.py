@@ -1,9 +1,4 @@
 import cv2
-import numpy as np
-import matplotlib.pyplot as plt
-from PIL import Image
-
-
 
 # parent class
 class ReadingImage:
@@ -21,11 +16,9 @@ class ReadingImage:
 # child class
 class preprocessingImages(ReadingImage):
 
-
     def __init__(self, image_1=None, image_2=None) :
          self.image_1 = image_1
          self.image_2 = image_2
-
 
 
     

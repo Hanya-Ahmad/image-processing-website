@@ -1,10 +1,5 @@
-import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-from PIL import Image
-
-
-
 
 class Processing:
     def __init__(self , img , cropping_dimentions , mode , high_pass_bool) :

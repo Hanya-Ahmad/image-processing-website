@@ -176,16 +176,16 @@ function updateData(){
         secondCropper = secondCrop();
     }
     else{
-        output.src="static/images/imag_final.jpg?"+ new Date().getMilliseconds();
         firstCropper.destroy();
         secondCropper.destroy();
         firstImage.src="static/images/_mag.jpg?"+new Date().getMilliseconds();
         secondImage.src="static/images/_phase.jpg?"+new Date().getMilliseconds();
         firstCropper = firstCrop();
         secondCropper = secondCrop();
-        output.src="static/images/imag_final.jpg?"+ new Date().getMilliseconds();
 
     }
+    output.src="static/images/imag_final.jpg?"+ new Date().getMilliseconds();
+
 }
 
 
