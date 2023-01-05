@@ -1,4 +1,5 @@
 
+
 let firstImageCropX;
 let firstImageCropY;
 let firstImageCropWidth;
@@ -63,6 +64,18 @@ hpCheckbox.addEventListener("change", function(){
 //   return response.json();
 // }).then(function(){console.log(first_image_is_phase)})
 
+// fetch('http://127.0.0.1:5000/post', {
+//     method: 'POST',
+//     body: JSON.stringify({first_image_is_phase:first_image_is_phase}),
+//     headers:{
+//       'Content-Type': 'application/json',
+//     'Accept': 'json'
+// }}).then(function (response) {
+//   // responseClone = response.clone(); // 2
+
+//   return response.json();
+// }).then(function(){console.log(first_image_is_phase)})
+
 checkbox2.addEventListener("change", function() {
     if (checkbox2.checked) {
         checkbox1.checked = false;
@@ -90,7 +103,10 @@ const secondImage = document.getElementById('magnitude_image')
 const firstCropper = new Cropper(firstImage, {
     aspectRatio:0,
     zoomOnWheel: false,
+    zoomOnWheel: false,
     viewMode:3,
+    guides: false,
+    movable:false,
     guides: false,
     movable:false,
      crop(event){
@@ -107,7 +123,10 @@ sendData()
 const secondCropper = new Cropper(secondImage, {
     aspectRatio:0,
     zoomOnWheel: false,
+    zoomOnWheel: false,
     viewMode:3,
+    guides: false,
+    movable:false,
     guides: false,
     movable:false,
      crop(event){
@@ -187,6 +206,26 @@ const cropMagnitudeImgBtn = document.getElementById('cropMagnitudeImgBtn')
 // // document.getElementById('second_output').src = croppedSecondImage;
 
 
+
+// //top left point, bottom left point, top right point, bottom right point
+// let secondCropArray=[[secondImageCropX , secondImageCropY],
+// [secondImageCropX , secondImageCropY+secondImageCropHeight],
+// [secondImageCropX+secondImageCropWidth , secondImageCropY],
+// [secondImageCropX+secondImageCropWidth , secondImageCropY+secondImageCropHeight]
+// ]
+
+// fetch('/', {
+//     method: 'POST',
+//     body: JSON.stringify({secondData:secondCropArray}),
+//     headers:{
+//       'Content-Type': 'application/json',
+//     'Accept': 'json'
+// }}).then(function (response) {
+
+//   return response.json();
+// })
+
+// });
 
 // //top left point, bottom left point, top right point, bottom right point
 // let secondCropArray=[[secondImageCropX , secondImageCropY],

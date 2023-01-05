@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge Photo</title>
+    <link rel = "shortcut icon" href = "../static/images/275127.png" type = "x-icon">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" type="text/css"  href= "../static/cropperjs/dist/cropper.min.css">
+    <script src="https://kit.fontawesome.com/21dba1864f.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="contain">
+        
+        <label>
+            <span >Mag</span>
+            <input type="checkbox" id="for_img_1" name="btn"  checked >
+            <span  >Phase</span>
+        </label>
+        
+        <label>
+            <span >Mag</span>
+            <input type="checkbox" id="for_img_2" name="btn" >
+            <span  >Phase</span>
+        </label>
+    </div>
+    <div class="boxes">
+        <div class="container">
+            
+            <div class="wrapper">
+               <div class="image">
+                
+                  <img id="first_image" src="{{ path_to_first_pic  }}" />
+               </div>
+               <div class="content">
+                <div class="icon">
+                   <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <div class="text">
+                   No file chosen, yet!
+                </div>
+                
+             </div>
+
+            </div>
+            <form action="http://127.0.0.1:5000/post" method="post" enctype="multipart/form-data">
+                <!-- <input type="file" name="file1"> -->
+                <label for="testid" id="custom-label" class="btn">Choose a file</label> 
+                <input type="file" style="visibility:hidden;" onchange="this.form.submit()" name="file1" class="custom_btn_second" id="testid">
+                
+                </form>
+            <!-- <button id="cropPhaseImgBtn"> Crop First Image </button> -->
+
+        </div>
+        <div class="container">
+            <div class="wrapper" id="second_wrapper">
+               <div class="image">
+               
+                  <img id="second_image" src="{{ path_to_second_pic  }}" />
+               </div>
+               <div class="content">
+                <div class="icon">
+                   <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <div class="text">
+                   No file chosen, yet!
+                </div>
+                
+             </div>  
+            </div>
+            <form action="http://127.0.0.1:5000/post" method="post" enctype="multipart/form-data">
+                <!-- <input type="file" name="file1"> -->
+                <label for="custom-btn" id="custom-label">Choose a file</label> 
+                <input style="visibility:hidden;"  type="file" onchange="this.form.submit()" class="custom_btn_second" id="custom-btn" name="file2">
+                
+                </form>
+            <!-- <button id="cropMagnitudeImgBtn" class="custom-btn-crop"> Crop Second Image </button>  -->
+        </div>
+    </div>
+    
+    <div class="container" id="result">
+        <div class="wrapper" id="result_wrapper">
+            <div class="image">
+               <img id="output" src="{{ output_image }}">
+               
+            </div>
+        </div>
+     
+    </div>
+
+
+<script src="../static/cropperjs/dist/cropper.min.js"> </script>
+
+
+<script src="{{ url_for('static',filename='main.js') }}"> </script>
+
+</body>
+</html>
+ 
+
+
