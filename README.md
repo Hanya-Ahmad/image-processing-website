@@ -3,7 +3,8 @@
 ## 1. Project Overview
 ### This project uses digital signal processing concepts to implement an image processing website that can either smooth or sharpen images using a low-pass or high-pass filter. This is accomplished by acquiring the phase from one image and the magnitude from a second image and combining them together accordingly. The user can choose certain parts of the image in the frequency domain using a cropper. This project also uses Flask Session and JavaScript LocalStorage to save the changes made by the user. 
 
-![chrome-capture-2023-0-5 (1)](https://user-images.githubusercontent.com/93945902/210887353-ab8437f6-3ad5-43af-a08f-0ff8c40409f0.gif)
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/93945902/215366760-3bb711ad-532c-4d88-8bab-0f71446f8075.gif)
+
 
 
 ## 2. How To Install and Run
